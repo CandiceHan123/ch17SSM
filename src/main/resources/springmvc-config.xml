@@ -10,7 +10,7 @@
   http://www.springframework.org/schema/context 
   http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 配置包扫描器，扫描@Controller注解的类 -->
-	<context:component-scan base-package="cn.edu.ujn.ch17.controller" />
+	<context:component-scan base-package="cn.edu.ujn.ch17.c" />
 	<!-- 加载注解驱动 -->
 	<mvc:annotation-driven />
 	<!-- 配置视图解析器 -->
