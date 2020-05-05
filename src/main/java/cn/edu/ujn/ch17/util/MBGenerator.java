@@ -23,6 +23,7 @@ public class MBGenerator {
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);
 			MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 			myBatisGenerator.generate(null);
+			System.out.println("生成结束！");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

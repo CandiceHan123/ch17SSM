@@ -13,7 +13,7 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- 读取db.properties -->
-    <context:property-placeholder location="classpath:db.properties"/>
+    <context:property-placeholder location="classpath:db.properties"/> 
     <!-- 配置数据源 -->
 	<bean id="dataSource" 
                            class="org.apache.commons.dbcp2.BasicDataSource">
