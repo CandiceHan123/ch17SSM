@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ujn.ch17.dao.ThingMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.ujn.ch17.dao.Thing">
+    <id column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="purchasePrice" jdbcType="REAL" property="purchaseprice" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="purchaseDate" jdbcType="DATE" property="purchasedate" />
+    <result column="isreturn" jdbcType="BIT" property="isreturn" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="salesVolume" jdbcType="INTEGER" property="salesvolume" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    name, type, purchasePrice, stock, purchaseDate, isreturn, price, salesVolume
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from thing
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    *
+    from thing
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from thing
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Thing">
+    insert into thing (name, type, purchasePrice, 
+      stock, purchaseDate, isreturn, 
+      price, salesVolume)
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{purchaseprice,jdbcType=REAL}, 
+      #{stock,jdbcType=INTEGER}, #{purchasedate,jdbcType=DATE}, #{isreturn,jdbcType=BIT}, 
+      #{price,jdbcType=REAL}, #{salesvolume,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Thing">
+    insert into thing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="purchaseprice != null">
+        purchasePrice,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="purchasedate != null">
+        purchaseDate,
+      </if>
+      <if test="isreturn != null">
+        isreturn,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="salesvolume != null">
+        salesVolume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseprice != null">
+        #{purchaseprice,jdbcType=REAL},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="purchasedate != null">
+        #{purchasedate,jdbcType=DATE},
+      </if>
+      <if test="isreturn != null">
+        #{isreturn,jdbcType=BIT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="salesvolume != null">
+        #{salesvolume,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ujn.ch17.dao.Thing">
+    update thing
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseprice != null">
+        purchasePrice = #{purchaseprice,jdbcType=REAL},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="purchasedate != null">
+        purchaseDate = #{purchasedate,jdbcType=DATE},
+      </if>
+      <if test="isreturn != null">
+        isreturn = #{isreturn,jdbcType=BIT},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="salesvolume != null">
+        salesVolume = #{salesvolume,jdbcType=INTEGER},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.ujn.ch17.dao.Thing">
+    update thing
+    set type = #{type,jdbcType=VARCHAR},
+      purchasePrice = #{purchaseprice,jdbcType=REAL},
+      stock = #{stock,jdbcType=INTEGER},
+      purchaseDate = #{purchasedate,jdbcType=DATE},
+      isreturn = #{isreturn,jdbcType=BIT},
+      price = #{price,jdbcType=REAL},
+      salesVolume = #{salesvolume,jdbcType=INTEGER}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

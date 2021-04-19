@@ -12,18 +12,12 @@
 						<thead>
 							<tr>
 								<th>编号</th>
-								<th>客户名称</th>
-								<th>客户职业</th>
-								<th>手机</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${list}" var="row">
 								<tr>
 									<td>${row.id}</td>
-									<td>${row.username}</td>
-									<td>${row.jobs}</td>
-									<td>${row.phone}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
