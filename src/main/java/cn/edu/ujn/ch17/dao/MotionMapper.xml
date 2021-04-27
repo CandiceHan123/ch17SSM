@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ujn.ch17.dao.MotionMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.ujn.ch17.dao.Motion">
+        <id column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="duration" jdbcType="INTEGER" property="duration" />
+        <result column="calorie" jdbcType="INTEGER" property="calorie" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        telephone,duration,calorie
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from motion
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from motion
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Motion">
+        insert into motion (telephone,duration,calorie)
+        values (#{telephone,jdbcType=VARCHAR},#{duration,jdbcType=INTEGER},#{calorie,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Motion">
+        insert into motion
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="calorie != null">
+                calorie,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="calorie != null">
+                #{calorie,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ujn.ch17.dao.Motion">
+        update motion
+        <set>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="calorie != null">
+                calorie = #{calorie,jdbcType=INTEGER},
+            </if>
+        </set>
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.edu.ujn.ch17.dao.Motion">
+        update motion
+        duration = #{duration,jdbcType=INTEGER},
+        sex = #{calorie,jdbcType=INTEGER}
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </update>
+</mapper>

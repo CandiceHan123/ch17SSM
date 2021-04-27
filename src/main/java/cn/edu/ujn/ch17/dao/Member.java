@@ -13,6 +13,8 @@ public class Member {
 
     private String username;
 
+    private String password;
+
     public String getTelephone() {
         return telephone;
     }
@@ -59,5 +61,13 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

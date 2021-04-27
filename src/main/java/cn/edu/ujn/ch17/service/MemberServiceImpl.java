@@ -19,7 +19,7 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
-    public List<Member> selectByPrimaryKey(String telephone) {
+    public Member selectByPrimaryKey(String telephone) {
         return this.memberMapper.selectByPrimaryKey(telephone);
     }
 

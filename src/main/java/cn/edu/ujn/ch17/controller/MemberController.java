@@ -22,10 +22,22 @@ public class MemberController {
         return this.memberService.selectAll();
     }
     @ResponseBody
-    @RequestMapping("findmemberbytelephone")
-    public List<Member> selectByTelephone(String telephone)
+    @RequestMapping("findmember")
+    public Member findMember(String telephone)
     {
         return this.memberService.selectByPrimaryKey(telephone);
+    }
+
+    @ResponseBody
+    @RequestMapping("findmemberbytele")
+    public String findByTele(String telephone){
+        Member member=this.memberService.selectByPrimaryKey(telephone);
+        if(member==null)
+        {
+            return "memberNotExist";
+        }
+        else
+        return member.getPassword();
     }
     @ResponseBody
     @RequestMapping("findmemberbyusername")

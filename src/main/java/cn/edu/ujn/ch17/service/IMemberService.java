@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IMemberService {
     public List<Member> selectAll();
-    public List<Member> selectByPrimaryKey(String telephone);
+    public Member selectByPrimaryKey(String telephone);
     public List<Member> selectByName(String name);
     public List<Member> selectBySex(String sex);
     public List<Member> selectByLevel(int level);

@@ -17,7 +17,7 @@ public interface MemberMapper {
 
     List<Member> selectAll();
 
-    List<Member> selectByPrimaryKey(String telephone);
+    Member selectByPrimaryKey(String telephone);
 
     List<Member> selectByName(String name);
 
