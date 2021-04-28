@@ -8,4 +8,6 @@ public interface IMemberrecordService {
     public List<Memberrecord> findByTele(String telephone);
 
     public List<Memberrecord> findAll();
+
+    public int addRecord(Memberrecord record);
 }

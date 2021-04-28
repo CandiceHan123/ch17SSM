@@ -90,4 +90,15 @@ public class MemberController {
             return "yes";
         else return "no";
     }
+    @ResponseBody
+    @RequestMapping("modifybalance")
+    public String modifyBalance(String telephone,double balance){
+        Member record=new Member();
+        record.setTelephone(telephone);
+        record.setBalance(balance);
+        int i=this.memberService.modifyByTele(record);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
 }

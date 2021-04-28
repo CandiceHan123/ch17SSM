@@ -15,6 +15,8 @@ public class Member {
 
     private String password;
 
+    private Double balance;
+
     public String getTelephone() {
         return telephone;
     }
@@ -69,5 +71,13 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }

@@ -24,4 +24,9 @@ public class MemberrecordServiceImpl implements IMemberrecordService {
         return this.mrm.selectAll();
     }
 
+    @Override
+    public int addRecord(Memberrecord record) {
+        return this.mrm.insertSelective(record);
+    }
+
 }
