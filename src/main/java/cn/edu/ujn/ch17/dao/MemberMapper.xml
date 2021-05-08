@@ -10,9 +10,10 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="balance" jdbcType="DOUBLE" property="balance" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
   </resultMap>
   <sql id="Base_Column_List">
-    telephone, sex, age, level, personal_trainer, username,password,balance
+    telephone, sex, age, level, personal_trainer, username,password,balance,integral
   </sql>
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -62,10 +63,10 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Member">
     insert into member (telephone, sex, age, 
-      level, personal_trainer, username,password,balance
+      level, personal_trainer, username,password,balance,integral
       )
     values (#{telephone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{level,jdbcType=INTEGER}, #{personalTrainer,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{balance,jdbcType=DOUBLE}
+      #{level,jdbcType=INTEGER}, #{personalTrainer,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{balance,jdbcType=DOUBLE},#{integral,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Member">
@@ -95,6 +96,9 @@
       <if test="balance != null">
         balance,
       </if>
+      <if test="integral != null">
+        integral,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="telephone != null">
@@ -120,6 +124,9 @@
       </if>
       <if test="balance != null">
         #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -147,6 +154,9 @@
       <if test="balance != null">
         balance = #{balance,jdbcType=VARCHAR},
       </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
     </set>
     where telephone = #{telephone,jdbcType=VARCHAR}
   </update>
@@ -158,7 +168,8 @@
       personal_trainer = #{personalTrainer,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      balance = #{balance,jdbcType=VARCHAR}
+      balance = #{balance,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER}
     where telephone = #{telephone,jdbcType=VARCHAR}
   </update>
 </mapper>

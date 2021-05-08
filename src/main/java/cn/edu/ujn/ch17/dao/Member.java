@@ -17,6 +17,8 @@ public class Member {
 
     private Double balance;
 
+    private Integer integral;
+
     public String getTelephone() {
         return telephone;
     }
@@ -79,5 +81,13 @@ public class Member {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
     }
 }

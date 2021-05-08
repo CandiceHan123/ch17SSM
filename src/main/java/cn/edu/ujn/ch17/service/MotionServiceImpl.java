@@ -20,4 +20,9 @@ public class MotionServiceImpl implements IMotionService{
     public Motion findByTele(String telephone) {
         return this.motionMapper.selectByPrimaryKey(telephone);
     }
+
+    @Override
+    public int modifyDuration(Motion record) {
+        return this.motionMapper.updateByPrimaryKeySelective(record);
+    }
 }

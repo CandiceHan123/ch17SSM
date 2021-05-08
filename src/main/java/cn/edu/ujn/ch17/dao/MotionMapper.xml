@@ -63,7 +63,7 @@
     <update id="updateByPrimaryKey" parameterType="cn.edu.ujn.ch17.dao.Motion">
         update motion
         duration = #{duration,jdbcType=INTEGER},
-        sex = #{calorie,jdbcType=INTEGER}
+        calorie = #{calorie,jdbcType=INTEGER}
         where telephone = #{telephone,jdbcType=VARCHAR}
     </update>
 </mapper>

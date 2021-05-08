@@ -8,4 +8,5 @@ public interface IThingService {
     public List<Thing> showAllThings();
     public int modifyThings(Thing record);
     public int deleteThings(String name);
+    public Thing selectThingByName(String name);
 }

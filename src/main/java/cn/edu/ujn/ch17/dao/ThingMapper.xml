@@ -10,9 +10,10 @@
     <result column="isreturn" jdbcType="BIT" property="isreturn" />
     <result column="price" jdbcType="REAL" property="price" />
     <result column="salesVolume" jdbcType="INTEGER" property="salesvolume" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
   </resultMap>
   <sql id="Base_Column_List">
-    name, type, purchasePrice, stock, purchaseDate, isreturn, price, salesVolume
+    name, type, purchasePrice, stock, purchaseDate, isreturn, price, salesVolume, integral
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -32,10 +33,10 @@
   <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Thing">
     insert into thing (name, type, purchasePrice, 
       stock, purchaseDate, isreturn, 
-      price, salesVolume)
+      price, salesVolume,integral)
     values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{purchaseprice,jdbcType=REAL}, 
       #{stock,jdbcType=INTEGER}, #{purchasedate,jdbcType=DATE}, #{isreturn,jdbcType=BIT}, 
-      #{price,jdbcType=REAL}, #{salesvolume,jdbcType=INTEGER})
+      #{price,jdbcType=REAL}, #{salesvolume,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Thing">
     insert into thing
@@ -64,6 +65,9 @@
       <if test="salesvolume != null">
         salesVolume,
       </if>
+      <if test="integral != null">
+        integral,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -89,6 +93,9 @@
       </if>
       <if test="salesvolume != null">
         #{salesvolume,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -116,6 +123,9 @@
       <if test="salesvolume != null">
         salesVolume = #{salesvolume,jdbcType=INTEGER},
       </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
     </set>
     where name = #{name,jdbcType=VARCHAR}
   </update>
@@ -127,7 +137,8 @@
       purchaseDate = #{purchasedate,jdbcType=DATE},
       isreturn = #{isreturn,jdbcType=BIT},
       price = #{price,jdbcType=REAL},
-      salesVolume = #{salesvolume,jdbcType=INTEGER}
+      salesVolume = #{salesvolume,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER}
     where name = #{name,jdbcType=VARCHAR}
   </update>
 </mapper>

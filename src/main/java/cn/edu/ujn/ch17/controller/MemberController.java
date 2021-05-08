@@ -91,11 +91,38 @@ public class MemberController {
         else return "no";
     }
     @ResponseBody
-    @RequestMapping("modifybalance")
-    public String modifyBalance(String telephone,double balance){
+    @RequestMapping("addbalance")
+    public String addBalance(String telephone,int value){
         Member record=new Member();
         record.setTelephone(telephone);
-        record.setBalance(balance);
+        double lastbalance=this.memberService.selectByPrimaryKey(telephone).getBalance();
+        int lastintegral=this.memberService.selectByPrimaryKey(telephone).getIntegral();
+        record.setBalance(lastbalance+value);
+        record.setIntegral(lastintegral+value/50);
+        int i=this.memberService.modifyByTele(record);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
+    @ResponseBody
+    @RequestMapping("reducebalance")
+    public String reduceBalance(String telephone,int value){
+        Member record=new Member();
+        record.setTelephone(telephone);
+        double lastbalance=this.memberService.selectByPrimaryKey(telephone).getBalance();
+        record.setBalance(lastbalance-value);
+        int i=this.memberService.modifyByTele(record);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
+    @ResponseBody
+    @RequestMapping("modifyintegral")
+    public String modifyIntegral(String telephone,int integral){
+        Member record=new Member();
+        record.setTelephone(telephone);
+        int lastintegral=this.memberService.selectByPrimaryKey(telephone).getIntegral();
+        record.setIntegral(lastintegral-integral);
         int i=this.memberService.modifyByTele(record);
         if(i==1)
             return "yes";

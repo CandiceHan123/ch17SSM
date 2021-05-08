@@ -19,6 +19,8 @@ public class Thing {
 
     private Integer salesvolume;
 
+    private Integer integral;
+
     public String getName() {
         return name;
     }
@@ -81,5 +83,13 @@ public class Thing {
 
     public void setSalesvolume(Integer salesvolume) {
         this.salesvolume = salesvolume;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
     }
 }

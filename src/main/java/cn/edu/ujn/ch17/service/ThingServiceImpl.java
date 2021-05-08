@@ -18,7 +18,10 @@ public class ThingServiceImpl implements IThingService{
     public List<Thing> showAllThings() {
         return this.thingMapper.selectAll();
     }
-
+    @Override
+    public Thing selectThingByName(String name) {
+        return this.thingMapper.selectByPrimaryKey(name);
+    }
     @Override
     public int modifyThings(Thing record) {
         return this.thingMapper.updateByPrimaryKeySelective(record);

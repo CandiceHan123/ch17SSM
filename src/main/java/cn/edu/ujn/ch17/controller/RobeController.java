@@ -44,4 +44,32 @@ public class RobeController {
             return "no";
         }
     }
+    @ResponseBody
+    @RequestMapping("/changestateto2")
+    public String changeStateTo2(int id,boolean occupied){
+        Robe robe=new Robe();
+        robe.setId(id);
+        robe.setOccupied(occupied);
+        robe.setTelephone("");
+        int i=this.iRobeService.modifyById(robe);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/changestateto1")
+    public String changeStateTo1(int id,boolean occupied,String telephone){
+        Robe robe=new Robe();
+        robe.setId(id);
+        robe.setOccupied(occupied);
+        robe.setTelephone(telephone);
+        int i=this.iRobeService.modifyById(robe);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
 }

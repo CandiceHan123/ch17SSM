@@ -21,6 +21,11 @@ public class ThingController {
         return this.iThingService.showAllThings();
     }
     @ResponseBody
+    @RequestMapping("/findthingbyname")
+    public Thing findThingByName(String name){
+        return this.iThingService.selectThingByName(name);
+    }
+    @ResponseBody
     @RequestMapping("/modifythings")
     public String modifyThings(String name,String type,boolean isreturn,float price) {
         Thing record=new Thing();
@@ -39,6 +44,22 @@ public class ThingController {
     @RequestMapping("/deletethings")
     public String deleteThings(String name){
         int i=this.iThingService.deleteThings(name);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/salethings")
+    public String saleThings(String name){
+        Thing thing=new Thing();
+        thing.setName(name);
+        int laststock=this.iThingService.selectThingByName(name).getStock();
+        thing.setStock(laststock-1);
+        int lastsalesvolume=this.iThingService.selectThingByName(name).getSalesvolume();
+        thing.setSalesvolume(lastsalesvolume+1);
+        int i=this.iThingService.modifyThings(thing);
         if(i==1){
             return "yes";
         }else{
