@@ -15,7 +15,7 @@ public interface PrivatetrainerMapper {
 
     List<Privatetrainer> selectByExample(PrivatetrainerExample example);
 
-    List<Privatetrainer> selectByPrimaryKey(String id);
+    Privatetrainer selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Privatetrainer record);
 

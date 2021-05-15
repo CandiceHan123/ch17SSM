@@ -128,4 +128,15 @@ public class MemberController {
             return "yes";
         else return "no";
     }
+    @ResponseBody
+    @RequestMapping("modifymemberpass")
+    public String modifyMemberPass(String telephone,String password){
+        Member member=new Member();
+        member.setTelephone(telephone);
+        member.setPassword(password);
+        int i=this.memberService.modifyByTele(member);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
 }

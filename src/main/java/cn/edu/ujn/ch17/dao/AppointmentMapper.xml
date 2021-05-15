@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ujn.ch17.dao.AppointmentMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.ujn.ch17.dao.Appointment">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="coachid" jdbcType="VARCHAR" property="coachid" />
+        <result column="appointtime" jdbcType="TIMESTAMP" property="appointtime" />
+        <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+        <result column="complete" jdbcType="BIT" property="complete" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,telephone,coachid,appointtime,endtime,complete
+    </sql>
+    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        *
+        from appointment
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from appointment
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByTelephone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from appointment
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByCoachId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from appointment
+        where coachid = #{coachid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from appointment
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Appointment">
+        insert into appointment (id,telephone,coachid,appointtime,endtime,complete
+        )
+        values (#{id,jdbcType=INTEGER},#{telephone,jdbcType=VARCHAR}, #{coachid,jdbcType=VARCHAR},
+        #{appointtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP},#{complete,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Appointment">
+        insert into appointment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="coachid != null">
+                coachid,
+            </if>
+            <if test="appointtime != null">
+                appointtime,
+            </if>
+            <if test="endtime != null">
+                endtime,
+            </if>
+            <if test="complete != null">
+                complete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="coachid != null">
+                #{coachid,jdbcType=VARCHAR},
+            </if>
+            <if test="appointtime != null">
+                #{appointtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="complete != null">
+                #{complete,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ujn.ch17.dao.Appointment">
+        update appointment
+        <set>
+            <if test="telephone != null">
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="coachid != null">
+                coachid = #{coachid,jdbcType=VARCHAR},
+            </if>
+            <if test="appointtime != null">
+                appointtime = #{appointtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endtime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="complete != null">
+                complete = #{complete,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.edu.ujn.ch17.dao.Appointment">
+        update appointment
+        set telephone = #{telephone,jdbcType=VARCHAR},
+        coachid = #{coachid,jdbcType=VARCHAR},
+        appointtime = #{appointtime,jdbcType=TIMESTAMP},
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+        complete = #{complete,jdbcType=BIT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

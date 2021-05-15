@@ -22,7 +22,7 @@ public class PrivateTrainerController {
     }
     @ResponseBody
     @RequestMapping("/findteachersbyid")
-    public List<Privatetrainer> findById(String id){
+    public Privatetrainer findById(String id){
         return this.iPrivateTrainerService.findById(id);
     }
     @ResponseBody
@@ -63,5 +63,17 @@ public class PrivateTrainerController {
         }else{
             return "no";
         }
+    }
+    @ResponseBody
+    @RequestMapping("/returnpassword")
+    public String returnPassword(String id)
+    {
+        Privatetrainer privatetrainer=this.iPrivateTrainerService.findById(id);
+        if(privatetrainer==null)
+        {
+            return "coachNotExist";
+        }
+        else
+            return privatetrainer.getPassword();
     }
 }

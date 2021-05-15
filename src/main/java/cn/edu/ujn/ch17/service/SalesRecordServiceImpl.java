@@ -35,4 +35,9 @@ public class SalesRecordServiceImpl implements ISalesRecordService{
         return this.salesrecordMapper.selectByMonth(time1,time2);
     }
 
+    @Override
+    public int addSalesRecord(Salesrecord record) {
+        return this.salesrecordMapper.insertSelective(record);
+    }
+
 }

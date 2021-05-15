@@ -13,4 +13,6 @@ public interface ISalesRecordService {
     public List<Salesrecord> selectByName(String name);
 
     public List<Salesrecord> selectByMonth(String time1,String time2);
+
+    public int addSalesRecord(Salesrecord record);
 }

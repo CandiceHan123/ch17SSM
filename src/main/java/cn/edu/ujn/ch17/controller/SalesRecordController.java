@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -68,5 +70,49 @@ public class SalesRecordController {
         String str2 = sdf.format(time2);*/
         //return this.salesRecordService.selectByMonth(str1,str2);
         return count;
+    }
+    @ResponseBody
+    @RequestMapping("/addsalesrecord1")
+    public String addSalesRecord1(String telephone,String thingsname,float price,String time){
+        Salesrecord salesrecord=new Salesrecord();
+        salesrecord.setTelephone(telephone);
+        salesrecord.setThingsname(thingsname);
+        salesrecord.setNumber(1);
+        salesrecord.setPrice(price);
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date time1 = new Date();
+        try {
+            time1 = format1.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        salesrecord.setTime(time1);
+        salesrecord.setMethod(true);
+        int i=this.salesRecordService.addSalesRecord(salesrecord);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
+    @ResponseBody
+    @RequestMapping("/addsalesrecord2")
+    public String addSalesRecord2(String telephone,String thingsname,float price,String time){
+        Salesrecord salesrecord=new Salesrecord();
+        salesrecord.setTelephone(telephone);
+        salesrecord.setThingsname(thingsname);
+        salesrecord.setNumber(1);
+        salesrecord.setPrice(price);
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date time2 = new Date();
+        try {
+            time2 = format2.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        salesrecord.setTime(time2);
+        salesrecord.setMethod(false);
+        int i=this.salesRecordService.addSalesRecord(salesrecord);
+        if(i==1)
+            return "yes";
+        else return "no";
     }
 }

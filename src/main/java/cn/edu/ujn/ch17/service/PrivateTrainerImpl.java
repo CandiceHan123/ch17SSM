@@ -20,7 +20,7 @@ public class PrivateTrainerImpl implements IPrivateTrainerService {
     }
 
     @Override
-    public List<Privatetrainer> findById(String id) {
+    public Privatetrainer findById(String id) {
         return this.privatetrainerMapper.selectByPrimaryKey(id);
     }
 

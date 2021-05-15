@@ -15,6 +15,16 @@ public class Salesrecord {
 
     private Date time;
 
+    private Boolean method;
+
+    public Boolean getMethod() {
+        return method;
+    }
+
+    public void setMethod(Boolean method) {
+        this.method = method;
+    }
+
     public Integer getId() {
         return id;
     }

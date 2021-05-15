@@ -8,6 +8,7 @@
     <result column="number" jdbcType="INTEGER" property="number" />
     <result column="price" jdbcType="REAL" property="price" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="method" jdbcType="BIT" property="method" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -39,7 +40,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, telephone, thingsName, number, price, time
+    id, telephone, thingsName, number, price, time,method
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ujn.ch17.dao.SalesrecordExample" resultMap="BaseResultMap">
     select
@@ -106,9 +107,9 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Salesrecord">
     insert into salesrecord (id, telephone, thingsName, 
-      number, price, time)
+      number, price, time,method)
     values (#{id,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{thingsname,jdbcType=VARCHAR}, 
-      #{number,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{time,jdbcType=TIMESTAMP})
+      #{number,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{time,jdbcType=TIMESTAMP}, #{method,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Salesrecord">
     insert into salesrecord
@@ -131,6 +132,9 @@
       <if test="time != null">
         time,
       </if>
+      <if test="method != null">
+        method,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -150,6 +154,9 @@
       </if>
       <if test="time != null">
         #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -171,6 +178,9 @@
       <if test="time != null">
         time = #{time,jdbcType=TIMESTAMP},
       </if>
+      <if test="method != null">
+        method = #{method,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -180,7 +190,8 @@
       thingsName = #{thingsname,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
       price = #{price,jdbcType=REAL},
-      time = #{time,jdbcType=TIMESTAMP}
+      time = #{time,jdbcType=TIMESTAMP},
+      method = #{method,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

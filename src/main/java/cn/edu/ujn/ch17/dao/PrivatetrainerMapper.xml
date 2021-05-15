@@ -8,6 +8,7 @@
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="hourlyWage" jdbcType="REAL" property="hourlywage" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -39,7 +40,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, level, age, sex, hourlyWage
+    id, name, level, age, sex, hourlyWage,password
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ujn.ch17.dao.PrivatetrainerExample" resultMap="BaseResultMap">
     select
@@ -97,9 +98,9 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.ujn.ch17.dao.Privatetrainer">
     insert into privatetrainer (id, name, level, 
-      age, sex, hourlyWage)
+      age, sex, hourlyWage,password)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
-      #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{hourlywage,jdbcType=REAL})
+      #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{hourlywage,jdbcType=REAL}, #{password,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ujn.ch17.dao.Privatetrainer">
     insert into privatetrainer
@@ -122,6 +123,9 @@
       <if test="hourlywage != null">
         hourlyWage,
       </if>
+      <if test="password != null">
+        password,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -141,6 +145,9 @@
       </if>
       <if test="hourlywage != null">
         #{hourlywage,jdbcType=REAL},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -162,6 +169,9 @@
       <if test="hourlywage != null">
         hourlyWage = #{hourlywage,jdbcType=REAL},
       </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -171,7 +181,8 @@
       level = #{level,jdbcType=INTEGER},
       age = #{age,jdbcType=INTEGER},
       sex = #{sex,jdbcType=VARCHAR},
-      hourlyWage = #{hourlywage,jdbcType=REAL}
+      hourlyWage = #{hourlywage,jdbcType=REAL},
+      password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
