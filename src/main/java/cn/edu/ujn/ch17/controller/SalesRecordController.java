@@ -115,4 +115,12 @@ public class SalesRecordController {
             return "yes";
         else return "no";
     }
+    @ResponseBody
+    @RequestMapping("/deletesalesrecord")
+    public String deleteSalesRecord(int id){
+        int i=this.salesRecordService.deleteSalesRecord(id);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
 }

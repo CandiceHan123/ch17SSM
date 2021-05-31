@@ -29,4 +29,9 @@ public class MemberrecordServiceImpl implements IMemberrecordService {
         return this.mrm.insertSelective(record);
     }
 
+    @Override
+    public int deleteRecord(int id) {
+        return this.mrm.deleteByPrimaryKey(id);
+    }
+
 }

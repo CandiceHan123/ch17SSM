@@ -40,4 +40,9 @@ public class SalesRecordServiceImpl implements ISalesRecordService{
         return this.salesrecordMapper.insertSelective(record);
     }
 
+    @Override
+    public int deleteSalesRecord(int id) {
+        return this.salesrecordMapper.deleteByPrimaryKey(id);
+    }
+
 }

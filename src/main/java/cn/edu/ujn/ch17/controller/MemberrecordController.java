@@ -25,4 +25,13 @@ public class MemberrecordController {
     public List<Memberrecord> findMemberRecordByTele(String telephone){
         return this.imrs.findByTele(telephone);
     }
+    @ResponseBody
+    @RequestMapping("/deletememberrecord")
+    public String deleteMemberRecord(int id){
+        int i=this.imrs.deleteRecord(id);
+        if(i==1)
+            return "yes";
+        else
+            return "no";
+    }
 }

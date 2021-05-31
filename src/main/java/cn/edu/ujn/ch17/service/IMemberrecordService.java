@@ -10,4 +10,6 @@ public interface IMemberrecordService {
     public List<Memberrecord> findAll();
 
     public int addRecord(Memberrecord record);
+
+    public int deleteRecord(int id);
 }

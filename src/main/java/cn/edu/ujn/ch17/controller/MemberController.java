@@ -139,4 +139,16 @@ public class MemberController {
             return "yes";
         else return "no";
     }
+    @ResponseBody
+    @RequestMapping("addintegral")
+    public String addIntegral(String telephone,int integral){
+        Member record=new Member();
+        record.setTelephone(telephone);
+        int lastintegral=this.memberService.selectByPrimaryKey(telephone).getIntegral();
+        record.setIntegral(lastintegral+integral);
+        int i=this.memberService.modifyByTele(record);
+        if(i==1)
+            return "yes";
+        else return "no";
+    }
 }
