@@ -56,9 +56,48 @@ public class ThingController {
         Thing thing=new Thing();
         thing.setName(name);
         int laststock=this.iThingService.selectThingByName(name).getStock();
-        thing.setStock(laststock-1);
+        if(laststock-1>=0) {
+            thing.setStock(laststock - 1);
+        }
+        else
+            return "no";
         int lastsalesvolume=this.iThingService.selectThingByName(name).getSalesvolume();
         thing.setSalesvolume(lastsalesvolume+1);
+        int i=this.iThingService.modifyThings(thing);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/purchasethings")
+    public String purchaseThings(String name,int amount)
+    {
+        Thing thing=new Thing();
+        thing.setName(name);
+        int laststock=this.iThingService.selectThingByName(name).getStock();
+        thing.setStock(laststock+amount);
+        int i=this.iThingService.modifyThings(thing);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/returnthings")
+    public String returnThings(String name,int amount)
+    {
+        Thing thing=new Thing();
+        thing.setName(name);
+        int laststock=this.iThingService.selectThingByName(name).getStock();
+        if(laststock-amount>=0)
+        {
+            thing.setStock(laststock-amount);
+        }
+        else
+            return "no";
         int i=this.iThingService.modifyThings(thing);
         if(i==1){
             return "yes";

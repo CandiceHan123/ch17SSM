@@ -76,4 +76,18 @@ public class PrivateTrainerController {
         else
             return privatetrainer.getPassword();
     }
+    @ResponseBody
+    @RequestMapping("/modifyteacherpass")
+    public String modifyTeacherPass(String id,String password)
+    {
+        Privatetrainer record=new Privatetrainer();
+        record.setId(id);
+        record.setPassword(password);
+        int i=this.iPrivateTrainerService.modifyById(record);
+        if(i==1){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
 }
